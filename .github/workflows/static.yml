@@ -6,7 +6,6 @@ on:
 jobs:
   upload:
     name: Upload
-    runs-on: ubuntu-latest
     steps:
       - name: Cloud Storage Uploader
         uses: google-github-actions/upload-cloud-storage@main
