@@ -3,6 +3,8 @@ on:
   push:
     branches:
       - main
+    paths:
+      - "static/**"
 jobs:
   upload:
     name: Upload
