@@ -1,0 +1,22 @@
+name: Bazel
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "api_handler/**"
+      - "proto/**"
+      - "WORKSPACE"
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: bazelbuild/setup-bazelisk@v1
+      - name: Mount bazel cache # Optional
+        uses: actions/cache@v2
+        with:
+          path: "~/.cache/bazel"
+          key: bazel
+      - run: bazel build //...

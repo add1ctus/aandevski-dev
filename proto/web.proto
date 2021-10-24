@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+
+package aandevski.blog.proto;
+
+service BlogService {
+  rpc ListArticles(ListArticlesRequest) returns (ListArticlesResponse) {}
+  rpc GetArticle(ArticleId) returns (Article) {}
+}
+
+message ListArticlesRequest {}
+
+message ListArticlesResponse { repeated ShortArticle articles = 1; }
+
+message ArticleId { string id = 1; }
+
+message ShortArticle {
+  string ArticleId = 1;
+  string title = 2;
+  google.protobuf.Timestamp create_ts = 3;
+  string excerpt = 4;
+}
+
+message Article {
+  string ArticleId = 1;
+  string title = 2;
+  google.protobuf.Timestamp create_ts = 3;
+  string content = 4;
+}
