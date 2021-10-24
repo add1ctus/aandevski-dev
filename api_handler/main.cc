@@ -4,7 +4,6 @@
 #include "grpc++/server_builder.h"
 #include "proto/web.grpc.pb.h"
 #include "proto/web.pb.h"
-#include <iostream>
 
 ABSL_FLAG(std::string, grpc_server_address, "0.0.0.0:50051",
           "Address and port to bind to the server.");
