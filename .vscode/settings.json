@@ -77,5 +77,6 @@
     "editor.formatOnSave": true,
     "editor.rulers": [
         80
-    ]
+    ],
+    "python.formatting.provider": "yapf"
 }
