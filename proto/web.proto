@@ -13,7 +13,10 @@ message ListArticlesRequest {}
 
 message ListArticlesResponse { repeated ShortArticle articles = 1; }
 
-message ArticleId { string id = 1; }
+message ArticleId {
+  string id = 1;
+  uint32 num_id = 2;
+}
 
 message ShortArticle {
   string ArticleId = 1;
