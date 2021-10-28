@@ -5,6 +5,7 @@ on:
       - main
     paths:
       - "static/**"
+      - ".github/workflows/static.yml"
 jobs:
   upload:
     name: Upload
