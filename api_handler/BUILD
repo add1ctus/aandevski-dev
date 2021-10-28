@@ -24,5 +24,5 @@ container_push(
     format = "Docker",
     image = ":api_handler_image",
     registry = "europe-west4-docker.pkg.dev",
-    repository = "personal-website-264919/aandevski-dev-image-repo",
+    repository = "personal-website-264919/aandevski-dev-image-repo/api-handler",
 )
