@@ -1,3 +1,6 @@
+load("@io_bazel_rules_docker//cc:image.bzl", "cc_image")
+load("@io_bazel_rules_docker//container:container.bzl", "container_push")
+
 cc_binary(
     name = "api_handler_main",
     srcs = ["main.cc"],
@@ -9,4 +12,17 @@ cc_binary(
         "@com_github_grpc_grpc//:grpc++_reflection",
         "@com_google_absl//absl/flags:flag",
     ],
+)
+
+cc_image(
+    name = "api_handler_image",
+    binary = ":api_handler_main",
+)
+
+container_push(
+    name = "api_handler_image_push",
+    format = "Docker",
+    image = ":api_handler_image",
+    registry = "europe-west4-docker.pkg.dev",
+    repository = "personal-website-264919/aandevski-dev-image-repo",
 )

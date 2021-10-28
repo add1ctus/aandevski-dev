@@ -76,3 +76,25 @@ http_archive(
     strip_prefix = "glog-0.5.0",
     urls = ["https://github.com/google/glog/archive/v0.5.0.zip"],
 )
+
+# ~~~ CONTAINERS ~~~
+http_archive(
+    name = "io_bazel_rules_docker",
+    sha256 = "92779d3445e7bdc79b961030b996cb0c91820ade7ffa7edca69273f404b085d5",
+    strip_prefix = "rules_docker-0.20.0",
+    urls = ["https://github.com/bazelbuild/rules_docker/releases/download/v0.20.0/rules_docker-v0.20.0.tar.gz"],
+)
+
+load(
+    "@io_bazel_rules_docker//repositories:repositories.bzl",
+    container_repositories = "repositories",
+)
+
+container_repositories()
+
+load(
+    "@io_bazel_rules_docker//cc:image.bzl",
+    _cc_image_repos = "repositories",
+)
+
+_cc_image_repos()
