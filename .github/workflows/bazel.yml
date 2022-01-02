@@ -22,7 +22,6 @@ jobs:
         with:
           path: "~/.cache/bazel"
           key: bazel
-      - run: apt-get install ca-certificates
       - run: bazel build //...
   push:
     name: Push API Handler Image
@@ -44,5 +43,4 @@ jobs:
           registry: europe-west4-docker.pkg.dev
           username: _json_key
           password: ${{ secrets.SA_GITHUB_IMAGE_PUSHER_CREDS }}
-      - run: apt-get install ca-certificates
       - run: bazel run //api_handler:api_handler_image_push
