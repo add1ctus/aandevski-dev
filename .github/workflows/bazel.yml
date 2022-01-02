@@ -22,7 +22,7 @@ jobs:
         with:
           path: "~/.cache/bazel"
           key: bazel
-      - run: apt update && apt install -y ca-certificates
+      - run: apt update && apt install -y ca-certificates g++ build-essential
       - run: bazel build //...
   push:
     name: Push API Handler Image
@@ -44,5 +44,5 @@ jobs:
           registry: europe-west4-docker.pkg.dev
           username: _json_key
           password: ${{ secrets.SA_GITHUB_IMAGE_PUSHER_CREDS }}
-      - run: apt update && apt install -y ca-certificates
+      - run: apt update && apt install -y ca-certificates g++ build-essential
       - run: bazel run //api_handler:api_handler_image_push
