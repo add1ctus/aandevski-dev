@@ -34,7 +34,6 @@ int main(int argc, char **argv) {
   ::google::InitGoogleLogging(argv[0]);
   std::string server_address = GetListeningAddressAndPort();
 
-  LOG(INFO) << "Server listening on " << server_address;
   BlogServiceImpl service;
   ::grpc::ServerBuilder builder;
   builder.AddListeningPort(server_address, grpc::InsecureServerCredentials());
