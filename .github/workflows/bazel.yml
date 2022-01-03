@@ -13,7 +13,7 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     container:
-      image: debian:bullseye
+      image: aandevski/build-img:latest
     steps:
       - uses: actions/checkout@v2
       - uses: bazelbuild/setup-bazelisk@v1
@@ -22,13 +22,12 @@ jobs:
         with:
           path: "~/.cache/bazel"
           key: bazel
-      - run: apt update && apt install -y ca-certificates g++ build-essential python3
       - run: bazel build //...
   push:
     name: Push API Handler Image
     runs-on: ubuntu-latest
     container:
-      image: debian:bullseye
+      image: aandevski/build-img:latest
     needs: build
     steps:
       - uses: actions/checkout@v2
@@ -44,5 +43,4 @@ jobs:
           registry: europe-west4-docker.pkg.dev
           username: _json_key
           password: ${{ secrets.SA_GITHUB_IMAGE_PUSHER_CREDS }}
-      - run: apt update && apt install -y ca-certificates g++ build-essential python3
       - run: bazel run //api_handler:api_handler_image_push
