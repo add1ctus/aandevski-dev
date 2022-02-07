@@ -7,6 +7,7 @@ cc_binary(
     deps = [
         "//proto:web_cc_grpc",
         "//proto:web_cc_proto",
+        "@com_google_protobuf//:protobuf",
         "@com_github_google_glog//:glog",
         "@com_github_grpc_grpc//:grpc++",
         "@com_github_grpc_grpc//:grpc++_reflection",

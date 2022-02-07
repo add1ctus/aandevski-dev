@@ -1,6 +1,7 @@
 #include "absl/flags/flag.h"
 #include "absl/strings/str_cat.h"
 #include "glog/logging.h"
+#include "google/protobuf/util/time_util.h"
 #include "grpc++/security/server_credentials.h"
 #include "grpc++/server_builder.h"
 #include "proto/web.grpc.pb.h"
@@ -9,13 +10,41 @@
 ABSL_FLAG(std::string, grpc_server_port, "", "Port to listen to.");
 
 namespace {
+using ::aandevski::blog::proto::Article;
+using ::aandevski::blog::proto::ArticleId;
 using ::aandevski::blog::proto::BlogService;
+using ::aandevski::blog::proto::ListArticlesRequest;
+using ::aandevski::blog::proto::ListArticlesResponse;
+using ::aandevski::blog::proto::ShortArticle;
 
 constexpr char kPortEnvVarName[] = "PORT";
 constexpr char kAddressBind[] = "dns:///[::]:";
 constexpr char kDefaultPort[] = "8080";
 
-class BlogServiceImpl : public BlogService::Service {};
+class BlogServiceImpl final : public BlogService::Service {
+  ::grpc::Status ListArticles(::grpc::ServerContext *context,
+                              const ListArticlesRequest *request,
+                              ListArticlesResponse *response) override {
+    ShortArticle *article = response->add_articles();
+    article->set_title("Test title");
+    article->set_articleid("1");
+    *article->mutable_create_ts() =
+        ::google::protobuf::util::TimeUtil::GetCurrentTime();
+    article->set_excerpt("This is a test blog post, lorem ipsum.");
+    return ::grpc::Status::OK;
+  }
+
+  ::grpc::Status GetArticle(::grpc::ServerContext *context,
+                            const ArticleId *request,
+                            Article *response) override {
+    response->set_articleid("1");
+    response->set_title("Test title");
+    *response->mutable_create_ts() =
+        ::google::protobuf::util::TimeUtil::GetCurrentTime();
+    response->set_content("This is a test blog post, lorem ipsummmmmm");
+    return ::grpc::Status::OK;
+  }
+};
 
 std::string GetListeningAddressAndPort() {
   if (const std::string &port_str = absl::GetFlag(FLAGS_grpc_server_port);
