@@ -9,3 +9,6 @@ spec:
     spec:
       containers:
         - image: europe-west4-docker.pkg.dev/personal-website-264919/aandevski-dev-image-repo/api-handler
+        - env:
+            - name: GLOG_log_dir
+              value: /var/log
