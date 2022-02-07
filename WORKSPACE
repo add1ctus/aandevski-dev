@@ -17,9 +17,9 @@ pip_install(
 # ~~~ GRPC ~~~
 http_archive(
     name = "com_github_grpc_grpc",
-    strip_prefix = "grpc-fc662b7964384b701af5bd3ce6994d2180080eb4",
+    strip_prefix = "grpc-b0f37a22bbae12a4b225a88be6d18d5e41dce881",
     urls = [
-        "https://github.com/grpc/grpc/archive/fc662b7964384b701af5bd3ce6994d2180080eb4.tar.gz",
+        "https://github.com/grpc/grpc/archive/b0f37a22bbae12a4b225a88be6d18d5e41dce881.tar.gz",
     ],
 )
 
