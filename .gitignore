@@ -1,4 +1,1 @@
-bazel-bin
-bazel-out
-bazel-personal-website
-bazel-testlogs
+bazel-*
