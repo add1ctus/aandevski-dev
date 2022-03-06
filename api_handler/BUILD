@@ -28,6 +28,6 @@ container_push(
     name = "api_handler_image_push",
     format = "Docker",
     image = ":api_handler_image",
-    registry = "europe-west4-docker.pkg.dev",
-    repository = "personal-website-264919/aandevski-dev-image-repo/api-handler",
+    registry = "ghcr.io",
+    repository = "add1ctus/api-handler",
 )
