@@ -1,0 +1,11 @@
+version: "3.7"
+services:
+  api-handler:
+    image: "ghcr.io/add1ctus/api-handler:latest"
+    ports:
+      - "8080:8080"
+    networks:
+      - main
+networks:
+  main:
+    name: main
